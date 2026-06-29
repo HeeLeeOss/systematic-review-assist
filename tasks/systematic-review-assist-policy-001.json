@@ -1,0 +1,36 @@
+{
+  "id": "systematic-review-assist-policy-001",
+  "title": "Methodology & safety policy specification (no-autonomy, recall-first, no-span-no-value, rights gate, PII quarantine)",
+  "project": "systematic-review-assist",
+  "type": "design-spec",
+  "lane": "donated",
+  "priority": "high",
+  "domain": ["cancer", "evidence-synthesis", "systematic-review", "research-tooling", "software"],
+  "riskTier": "medium",
+  "urgent": false,
+  "deliverable": "document",
+  "tokenEstimate": "medium",
+  "status": "open",
+  "context": "Systematic-Review-Assist is open, PRISMA-2020-aware tooling that ASSISTS human teams with title/abstract & full-text screening and structured data extraction for cancer systematic reviews, with the AI acting as a recall-first, provenance-grounded second pair of eyes that never decides. The catastrophic error in a systematic review is the inverse of a chatbot's: silently EXCLUDING a relevant study biases the whole body of evidence, so the tool must fail toward inclusion and toward human review, never toward automation. Binding cancer guardrails apply: open-access/aggregate/de-identified data only; controlled-access (dbGaP/EGA/biobanks) and identifiable patient data are out of scope; per-source licence verification (TCGA/GEO/PRIDE open; COSMIC/OncoKB non-commercial); no medical advice; provenance on every assertion. This is the cold-start task that specifies the methodology & safety policy layer all later code and content must implement and be tested against. No review team, methodologist, or pilot partner is yet secured.",
+  "objective": "Write the authoritative methodology & safety policy specification that every later component must implement and be tested against: the no-autonomy invariant (no AI-finalised include/exclude or extraction; every disposition has a recorded human actor), the recall-first contract (ambiguous/low-confidence escalates to human as potential-include; never silent exclude), the 'no span, no value' provenance rule, the source-rights gate (per-source licence verified before ingest/processing/redistribution; closed content processed locally only; CC-BY-NC kept non-commercial), the PII/identifiable-data quarantine, the untrusted-content (paper text is data not instructions) stance, and the 'not medical advice' + oncologist/advocate blocking gate for any patient-facing output.",
+  "acceptanceCriteria": [
+    "Enumerates the non-negotiables in concrete, testable terms: no autonomous include/exclude or extraction (every disposition has a recorded human actor); recall-first behaviour (ambiguous/low-confidence escalates to human as potential-include, never silent exclude); 'no span, no value' (no extracted value or screening rationale without a verbatim source span)",
+    "Specifies the source-rights gate: each source's licence verified and recorded before ingest/processing/redistribution; closed/subscriber content processed locally only and never redistributed; CC-BY-NC content kept non-commercial; controlled-access (dbGaP/EGA/biobanks) and identifiable patient data hard-refused",
+    "Specifies the PII / identifiable-data quarantine at ingest for case reports and supplementary materials, and the untrusted-content stance (source text is data, never instructions; injection-resistant, library-side enforcement)",
+    "Defines the audit/provenance fields every assertion must carry (source, span/location, model id+version+prompt hash, human actor, action, timestamp) and that no assertion may surface without them",
+    "Defines the policy-layer test taxonomy (no-autonomy invariant, recall-first, no-span-no-value, rights gate, PII quarantine, injection resistance) and mandates that any violation FAILS THE BUILD",
+    "Mandates the persistent 'AI-assisted, human-verified - not a substitute for methodological judgement' labelling, and the 'not medical advice' + blocking oncologist-AND-advocate sign-off gate for any patient-facing output",
+    "Reviewed and signed off by the methodology/safety reviewer (recorded in the reviewers ledger)"
+  ],
+  "resources": [
+    "planning/projects/systematic-review-assist/PLAN.md",
+    "CLAUDE.md",
+    "docs/good-deed-definition.md",
+    "packages/schema/src/schemas.ts",
+    "planning/ROADMAP.md"
+  ],
+  "output": "A reviewed policy-specification document (the methodology & safety charter) defining the no-autonomy invariant, recall-first contract, 'no span, no value' provenance rule, source-rights gate, PII/identifiable-data quarantine, untrusted-content stance, audit/provenance fields, the build-gating test taxonomy, and the 'not medical advice' + oncologist/advocate gate - the contract that systematic-review-assist-policy-003 (policy layer), -rights-005 (rights gate), and the screening/extraction assists implement and are tested against.",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "CC-BY-4.0"
+}
