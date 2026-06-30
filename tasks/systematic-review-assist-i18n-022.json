@@ -1,0 +1,35 @@
+{
+  "id": "systematic-review-assist-i18n-022",
+  "title": "Non-English record screening support",
+  "project": "systematic-review-assist",
+  "type": "code",
+  "lane": "donated",
+  "priority": "low",
+  "domain": ["cancer", "evidence-synthesis", "systematic-review", "research-tooling", "software", "i18n"],
+  "riskTier": "medium",
+  "urgent": false,
+  "deliverable": "pr",
+  "tokenEstimate": "medium",
+  "status": "open",
+  "context": "Systematic reviews of international cancer literature increasingly require screening records in multiple languages (e.g. French, Spanish, German, Chinese, Japanese). The AI screening assist currently processes English-language abstracts. Extending to non-English records requires per-language evaluation before any recall claim is made for that language: the recall kill-gate (task 012) must be run on a language-appropriate gold standard before the tool is considered validated for that language. Non-English support is a backlog feature, planned only after the English pipeline is validated in a pilot.",
+  "objective": "Extend the AI screening assist (core/screening) to support non-English record screening: detect the language of a record's title/abstract, route it to a language-appropriate screening prompt, and evaluate recall and WSS@95 for each supported language against a language-appropriate gold-standard subset before any recall claim is made for that language; all existing guardrails (no auto-exclude, recall-first, provenance, rights gate, injection-resistance) apply per language.",
+  "acceptanceCriteria": [
+    "Language detection is applied to each record's title/abstract at ingest or screening time; records are routed to a language-appropriate screening prompt; detection failures route to human review as uncertain rather than silently defaulting to English",
+    "The recall kill-gate (task 012) is run independently for each supported language against a language-appropriate gold-standard subset before a recall claim is published for that language; cross-language recall is not assumed to transfer",
+    "All existing guardrails apply per-language: no auto-exclude, recall-first routing, provenance on every suggestion (including source-language span), rights gate at ingest, injection-resistant policy layer",
+    "At least one non-English language (e.g. French or Spanish) is implemented and eval-validated with a documented gold-standard subset and a methodologist sign-off on the recall claim for that language",
+    "The docs are updated to list which languages have been eval-validated, which recall thresholds were achieved, and that non-validated languages must not be used for published recall claims",
+    "Tests cover: language detection, language-appropriate prompt routing, detection-failure escalation, and per-language provenance; all run in CI; pnpm build && pnpm test pass"
+  ],
+  "resources": [
+    "PLAN.md",
+    "TASKS.md",
+    "tasks/systematic-review-assist-screening-011.json",
+    "tasks/systematic-review-assist-eval-012.json",
+    "CLAUDE.md"
+  ],
+  "output": "A merged PR extending the AI screening assist to support non-English records (at least one validated language) with per-language recall evaluation, all existing guardrails applied per-language, and updated documentation listing validated languages and their recall evidence.",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "Apache-2.0"
+}

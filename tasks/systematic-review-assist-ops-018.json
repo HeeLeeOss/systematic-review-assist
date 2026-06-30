@@ -1,0 +1,34 @@
+{
+  "id": "systematic-review-assist-ops-018",
+  "title": "Ops runbook + outcomes tracking + maintenance rotation + source-licence review cadence + re-validation process for a new topic",
+  "project": "systematic-review-assist",
+  "type": "maintenance",
+  "lane": "donated",
+  "priority": "medium",
+  "domain": ["evidence-synthesis", "systematic-review", "research-tooling", "software"],
+  "riskTier": "medium",
+  "urgent": false,
+  "deliverable": "document",
+  "tokenEstimate": "medium",
+  "status": "open",
+  "context": "After the pilot (task 017) is complete, the tool must be sustainably maintained. A named maintenance rotation must own the tooling; the steward owns the pilot relationship and outcome tracking. The eval harness, gold-standard fixtures, and policy-layer test suite are maintained as living tests and expanded as new failure modes are found. Source licences carry a review cadence because publisher and dataset terms change over time. Recall is version-scoped and re-validated per new review topic rather than assumed to transfer. Outcomes tracked are methodological, not engagement metrics. Expansion to a second cancer/topic requires a documented, re-validated, expert-gated process. Depends on 017 (pilot, which must complete first).",
+  "objective": "Write and commit an ops runbook and sustainability documentation covering: how to deploy and use the tool; a source-licence re-verification cadence (including COSMIC/OncoKB non-commercial terms review); the eval/gold-standard maintenance process; how to add a new review topic with re-validated recall (not assumed to transfer from a prior topic); a named maintenance rotation; and a methodological outcomes tracking plan (reviews completed/accelerated, recall maintained, provenance/licence compliance, reproducibility).",
+  "acceptanceCriteria": [
+    "An ops runbook document covers: local installation and first-run; how to start a new review project; how to export and hand off data to statistical tools; how to run the eval harness on a new review; and how to file a bug or flag a policy-layer regression",
+    "A source-licence review cadence is documented: a schedule (at minimum annual) for re-verifying that ingested/redistributed source licences and referenced dataset terms (TCGA/GEO/PRIDE open; COSMIC/OncoKB non-commercial) remain compliant; a process for flagging and remediating a term change",
+    "A re-validation process for a new review topic is documented: what must be re-run (eval harness on a topic-appropriate gold standard), what sign-offs are required (methodologist for recall claims, oncology reviewer for domain accuracy), and the rule that prior recall estimates do not transfer to a new topic",
+    "A named maintenance rotation is established (at least one named maintainer) with responsibilities documented; the steward's role (pilot relationship, outcome tracking) is distinct from the maintainer's role",
+    "Outcomes tracked are methodological: reviews completed or materially accelerated, recall maintained at >= 95% per topic, 0 AI-only exclusions, provenance/licence compliance maintained, reproducibility of completed reviews confirmed; engagement metrics (page views, downloads) are explicitly excluded",
+    "The runbook and sustainability documents are committed to the repository under docs/ and released under CC-BY-4.0"
+  ],
+  "resources": [
+    "PLAN.md",
+    "TASKS.md",
+    "tasks/systematic-review-assist-pilot-017.json",
+    "CLAUDE.md"
+  ],
+  "output": "A committed ops runbook and sustainability documentation (docs/) covering deployment, source-licence review cadence, eval/gold-standard maintenance, new-topic re-validation process, named maintenance rotation, and methodological outcomes tracking plan; released under CC-BY-4.0.",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "CC-BY-4.0"
+}

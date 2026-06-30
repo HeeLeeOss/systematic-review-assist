@@ -1,0 +1,37 @@
+{
+  "id": "systematic-review-assist-pilot-017",
+  "title": "Secure pilot review team + topic; run a real review with the tool; independent methodology + licence verification; record outcome",
+  "project": "systematic-review-assist",
+  "type": "maintenance",
+  "lane": "donated",
+  "priority": "high",
+  "domain": ["cancer", "evidence-synthesis", "systematic-review", "research"],
+  "riskTier": "medium",
+  "urgent": false,
+  "deliverable": "document",
+  "tokenEstimate": "medium",
+  "status": "open",
+  "context": "This is the Definition of Shipped for the project: a real cancer systematic review team uses the tool to complete or materially accelerate a real review, with recall >= target (>=95%) and 0 AI-only exclusions, full provenance and licence compliance, PRISMA-conformant artefacts, and an independent methodologist's confirmation that rigour was maintained. No pilot team, topic, steward, or methodologist is yet secured (verifiedNeed: false). The dated partner-acquisition plan requires: a candidate team and topic identified by 2026-08-31, a methodologist secured by 2026-10-31, and a pilot team and topic secured by 2026-12-31. If no pilot team is secured by ~2027-03-31, the build-vs-mothball/pivot rule applies (pivot to releasing the reference review as a methods artefact, or mothball to maintenance-only). Depends on 015 (PRISMA reporting) and 016 (reference review, which is the pivot fallback).",
+  "objective": "Secure a real cancer systematic review team (rare-cancer foundation research arm, Cochrane-style review group, academic evidence-synthesis unit, or patient-advocacy research program), agree on a review topic, assign a steward and methodologist reviewer, run a real review using the tool, measure recall and 0 AI-only exclusions, have an independent methodologist confirm rigour, verify licence compliance, generate PRISMA artefacts, and record the outcome. If no pilot is secured by ~2027-03-31, document and execute the build-vs-mothball/pivot decision.",
+  "acceptanceCriteria": [
+    "A real cancer review team (or sponsoring organisation) is secured by 2026-12-31 and documented: organisation name, contact, agreed review topic, and a steward assigned",
+    "A methodologist reviewer (systematic-review methodologist / information specialist) is secured by 2026-10-31 and documented: name, affiliation, scope of review, version-scoped sign-off commitment",
+    "The team uses the tool to complete or materially accelerate a real cancer systematic review: screening, data extraction, risk-of-bias assessment, and PRISMA artefact generation are all conducted using the tool with the full audit trail",
+    "Measured recall >= 95% (with 95% CI) on the pilot review and 0 eligible studies lost via any AI action without human review, verified by the eval harness against the pilot review's included set; an independent methodologist signs off the recall claim before it is published",
+    "Licence compliance is independently verified: all ingested/processed/redistributed sources have recorded, verified licences; no non-compliant content is in shared outputs",
+    "PRISMA 2020 artefacts are produced: reconciled flow diagram, report scaffold, screening log, extraction dataset with licence/attribution manifest, reproducibility manifest",
+    "The outcome is recorded in the project governance log: team, topic, recall measurement, methodologist sign-off, licence compliance verification, date completed, and whether the deed is counted as delivered",
+    "If no pilot team is secured by ~2027-03-31, the build-vs-mothball/pivot decision is documented and executed (pivot to reference review as methods artefact, or mothball to maintenance-only) with the decision recorded in governance"
+  ],
+  "resources": [
+    "PLAN.md",
+    "TASKS.md",
+    "tasks/systematic-review-assist-prisma-015.json",
+    "tasks/systematic-review-assist-reference-016.json",
+    "CLAUDE.md"
+  ],
+  "output": "A documented outcome record: the pilot review team's details, the review topic, the recall measurement (>= 95% with CI) and 0 AI-only exclusions verified by the eval harness, the independent methodologist's sign-off, the licence compliance verification, the PRISMA artefacts, and the governance log entry confirming the deed is delivered. (Or, if no pilot: the documented build-vs-mothball/pivot decision with governance record.)",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "CC-BY-4.0"
+}

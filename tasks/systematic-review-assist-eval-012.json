@@ -1,0 +1,35 @@
+{
+  "id": "systematic-review-assist-eval-012",
+  "title": "Screening eval harness (recall + WSS@95 vs gold standard) — recall kill-gate",
+  "project": "systematic-review-assist",
+  "type": "code",
+  "lane": "donated",
+  "priority": "high",
+  "domain": ["cancer", "evidence-synthesis", "systematic-review", "research-tooling", "software"],
+  "riskTier": "medium",
+  "urgent": false,
+  "deliverable": "pr",
+  "tokenEstimate": "medium",
+  "status": "open",
+  "context": "The safety metric for a screening assist is recall/sensitivity: the fraction of eligible studies that the assist would route toward human review rather than silently dropping. The standard workload metric is WSS@95 (Work Saved over Sampling at 95% recall). Both must be measured against the gold-standard fixture (task 009). The recall kill-gate is binding: if recall < 95% (or any AI-action false exclusion occurs), the assist is restricted to advisory/triage-only (ranking, no disposition claims) and recall/WSS claims are withheld until the bar is met and a methodologist signs off. Depends on 009 (gold-standard fixture) and 011 (screening assist, to evaluate).",
+  "objective": "Implement the screening eval harness (scripts/eval.ts) that runs the AI screening assist (011) against the gold-standard fixture (009) and reports recall/sensitivity (with 95% CI), precision, and WSS@95; asserts via an audit-log check that 0 eligible studies were lost via any AI action without human review; and enforces the recall kill-gate: if recall < 95% or any false exclusion is detected, the harness outputs a kill-gate FAIL, the assist is flagged advisory/triage-only, and recall/WSS claims are withheld.",
+  "acceptanceCriteria": [
+    "The eval harness runs the AI screening assist against the gold-standard fixture and computes: recall/sensitivity (number of true-positive eligible studies routed to human review / total eligible), a 95% confidence interval for recall, precision, and WSS@95",
+    "An audit-log check asserts that 0 eligible studies were lost via any AI action without human review; if any are found, the kill-gate fails immediately regardless of the aggregate recall value",
+    "The recall kill-gate is operative: if recall < 95% OR any AI-action false exclusion is detected, the harness emits a kill-gate FAIL result, flags the assist as advisory/triage-only (ranking and ordering only; no disposition claims), and withholds recall/WSS claims from the output",
+    "Eval results are written to a versioned report (JSON + human-readable summary) recording the model id+version+prompt hash, eval date, gold-standard fixture version, and all metric values with CIs; this report is the artefact a methodologist signs off before recall claims are published",
+    "The harness is runnable as pnpm eval (or equivalent) from the repo root; instructions for running it are documented",
+    "Tests cover: correct recall/WSS computation on a synthetic fixture, kill-gate trigger on recall < 95%, kill-gate trigger on a false exclusion, and audit-log check; all run in CI; pnpm build && pnpm test pass"
+  ],
+  "resources": [
+    "PLAN.md",
+    "TASKS.md",
+    "tasks/systematic-review-assist-fixture-009.json",
+    "tasks/systematic-review-assist-screening-011.json",
+    "CLAUDE.md"
+  ],
+  "output": "A merged PR adding the screening eval harness (scripts/eval.ts) to the repository, with recall + WSS@95 reporting, audit-log false-exclusion check, and a binding recall kill-gate that restricts the assist to advisory/triage-only and withholds recall claims if the bar is not met.",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "Apache-2.0"
+}

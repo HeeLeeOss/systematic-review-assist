@@ -1,0 +1,36 @@
+{
+  "id": "systematic-review-assist-screening-011",
+  "title": "AI screening assist: per-record suggestion (disposition + criterion + rationale + confidence + span); cannot auto-exclude",
+  "project": "systematic-review-assist",
+  "type": "code",
+  "lane": "donated",
+  "priority": "high",
+  "domain": ["cancer", "evidence-synthesis", "systematic-review", "research-tooling", "software"],
+  "riskTier": "medium",
+  "urgent": false,
+  "deliverable": "pr",
+  "tokenEstimate": "large",
+  "status": "open",
+  "context": "The AI screening assist is the core value feature of Systematic-Review-Assist. For each record it produces a structured suggestion — proposed disposition, the specific eligibility criterion from the protocol, a rationale, a calibrated confidence, and the verbatim source span it relied on — surfaced inside the dual-reviewer workflow. The single most critical constraint is that the assist CANNOT auto-exclude: at title/abstract it ranks/triages and proposes only; low-confidence/ambiguous items route to human review as potential-include. Every exclusion must be human-confirmed. The policy layer (003) enforces this structurally. Source text is treated as untrusted data (injection-resistant). Depends on 003 (policy layer), 008 (human screening workspace, to plug into), and 010 (LLM client).",
+  "objective": "Implement the AI screening assist (core/screening) in @elyos/sra-core: for each record, construct a prompt from the protocol's eligibility criteria and the record's title/abstract (or licence-permitted full text), call the LLM client (010) to obtain a structured suggestion (proposed disposition, specific criterion id, rationale, confidence, verbatim span), and surface it inside the dual-reviewer workspace (008) as a non-binding proposal — the policy layer (003) enforces that no AI-proposed exclusion is committed without a human actor, and that low-confidence/ambiguous suggestions route to potential-include.",
+  "acceptanceCriteria": [
+    "For each record the screening assist returns a structured ScreeningSuggestion: proposed disposition (potential-include / uncertain / potential-exclude), the id of the specific eligibility criterion from the protocol, a plain-language rationale, a calibrated confidence score, and the verbatim source span from the record that the suggestion is based on",
+    "The assist CANNOT auto-exclude: the ScreeningSuggestion type has no mechanism to commit an exclusion; the suggestion is surfaced to the dual-reviewer workspace as a non-binding proposal; all commits go through the human disposition API (policy layer 003), which rejects writes without a human actor",
+    "Low-confidence or ambiguous records are flagged as potential-include and routed to human review; the confidence threshold for escalation is configurable and defaults to conservatively high recall",
+    "Source text is treated as untrusted data: the prompt construction is library-side and cannot be overridden by content in the record; injection cases (e.g. instructions embedded in an abstract) are covered in the test suite",
+    "Each ScreeningSuggestion carries a Provenance record (source id, model id+version+prompt hash, timestamp) and is rejected by the policy layer if it lacks one",
+    "Tests cover: structured suggestion output, cannot-auto-exclude invariant, low-confidence escalation, injection-resistance cases, and provenance on every suggestion; all tests run in CI; pnpm build && pnpm test pass"
+  ],
+  "resources": [
+    "PLAN.md",
+    "TASKS.md",
+    "tasks/systematic-review-assist-policy-003.json",
+    "tasks/systematic-review-assist-screening-008.json",
+    "tasks/systematic-review-assist-llm-010.json",
+    "CLAUDE.md"
+  ],
+  "output": "A merged PR adding the AI screening assist (core/screening) to @elyos/sra-core, integrated with the policy layer (003), dual-reviewer workspace (008), and LLM client (010), with structured ScreeningSuggestion output, cannot-auto-exclude invariant, and a test suite including injection-resistance cases.",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "Apache-2.0"
+}

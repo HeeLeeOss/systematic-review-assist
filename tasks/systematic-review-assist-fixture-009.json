@@ -1,0 +1,35 @@
+{
+  "id": "systematic-review-assist-fixture-009",
+  "title": "Labelled gold-standard review fixture from open-access cancer literature (for eval)",
+  "project": "systematic-review-assist",
+  "type": "data",
+  "lane": "donated",
+  "priority": "high",
+  "domain": ["cancer", "evidence-synthesis", "systematic-review", "data"],
+  "riskTier": "medium",
+  "urgent": false,
+  "deliverable": "dataset",
+  "tokenEstimate": "medium",
+  "status": "open",
+  "context": "To evaluate the AI screening assist (task 012) and extraction assist (tasks 013+), a labelled gold-standard dataset is required: a real, diverse open-access cancer review's records with known include/exclude labels at both title/abstract and full-text stages, plus a gold-standard extraction sheet for the included studies. This fixture is used to compute recall/sensitivity (with 95% CI), WSS@95, and extraction accuracy. The dataset must be assembled from open-access literature with verified licences (CC-BY / CC-BY-NC acceptable; no closed or controlled-access sources) and provenance recorded for every record. Representativeness and generalisation are a risk — the gold standard must be documented in terms of the cancer type, search scope, and its suitability for evaluating recall claims. Depends on 005 (rights gate, to verify licences at ingest) and 007 (ingest parsers, to import the source records).",
+  "objective": "Assemble a labelled open-access cancer review fixture from a real, published systematic review on a cancer topic (e.g. a sarcoma or paediatric oncology review): import records via the ingest pipeline (task 007) with the rights gate verifying each source's licence; apply gold-standard include/exclude labels at title/abstract and full-text stages based on the published review's decisions; compile a gold-standard extraction sheet for included studies; document the review's cancer topic, search scope, representativeness, and licence provenance.",
+  "acceptanceCriteria": [
+    "The fixture is drawn from a real, published systematic review on a cancer topic; records are open-access (CC-BY, CC-BY-NC, or public-domain metadata) with verified licences recorded in the provenance store",
+    "Each record carries a gold-standard label for the title/abstract screening stage (include/exclude/uncertain) and, for records not excluded at title/abstract, a label for the full-text screening stage; labels trace to the published review's decisions with provenance",
+    "A gold-standard extraction sheet covers the included studies with fields matching the review's extraction form; each field value is linked to a source location in the published text",
+    "A README or provenance document describes: the cancer topic and search scope, the source review (citation + licence), how labels were derived, representativeness limitations, and how recall estimates from this fixture should be interpreted (version-scoped, not assumed to generalise)",
+    "The fixture is released under CC-BY-4.0 (or CC-BY-NC-4.0 where the upstream licence requires it) with full attribution to the source review",
+    "The fixture loads without error through the ingest pipeline (task 007) in the test suite"
+  ],
+  "resources": [
+    "PLAN.md",
+    "TASKS.md",
+    "tasks/systematic-review-assist-rights-005.json",
+    "tasks/systematic-review-assist-ingest-007.json",
+    "CLAUDE.md"
+  ],
+  "output": "A dataset (committed to the repository or hosted as a release asset) containing: the gold-standard record set with title/abstract and full-text labels, the gold-standard extraction sheet for included studies, a provenance/README document, and a verified licence manifest; released under CC-BY-4.0 (or CC-BY-NC-4.0 as required).",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "CC-BY-4.0"
+}

@@ -1,0 +1,36 @@
+{
+  "id": "systematic-review-assist-pls-019",
+  "title": "(OPTIONAL, HIGH) Plain-language summary of a completed review — education only, 'not medical advice', blocking oncologist + advocate sign-off",
+  "project": "systematic-review-assist",
+  "type": "writing",
+  "lane": "donated",
+  "priority": "low",
+  "domain": ["cancer", "evidence-synthesis", "systematic-review", "patient-education", "research-tooling"],
+  "riskTier": "high",
+  "urgent": false,
+  "deliverable": "document",
+  "tokenEstimate": "medium",
+  "status": "open",
+  "context": "This is an OPTIONAL, HIGH risk-tier capability. A plain-language summary (PLS) makes the findings of a completed, published systematic review accessible to patients and the public. The HIGH risk tier applies because this is a patient-facing health-information surface: the catastrophic failure mode is patients treating AI-generated text as medical advice. The capability is therefore: (1) optional — built only if a partner needs it and the blocking gate is secured; (2) late — sequenced after M5 (pilot); (3) derived only from a completed, published review's own cited findings; (4) education only with a persistent 'not medical advice' notice; and (5) blocked on recorded sign-off from BOTH a credentialed oncologist AND a patient advocate — a maintainer cannot override this gate. The gate is version-scoped: any material change re-triggers it. Depends on 016 (reference review, as the source completed review) and 017 (pilot, confirming the review is complete and published).",
+  "objective": "Implement the optional plain-language summary capability (core/pls) in @elyos/sra-core: generate an education-only plain-language summary of a completed, published systematic review, derived only from the review's own cited findings with provenance to each finding; carry a persistent 'not medical advice' notice and an 'AI-assisted, human-verified' label; and enforce the blocking dual sign-off gate (credentialed oncologist AND patient advocate) before any PLS is served or published, with sign-off scoped to the specific version and re-triggered on any material change.",
+  "acceptanceCriteria": [
+    "The PLS is derived ONLY from the completed, published review's own cited findings: each claim in the PLS links to a specific finding in the review with provenance (citation + section); the AI introduces no additional claims, speculations, or generalisations not present in the review",
+    "Every PLS output carries a persistent, prominent 'not medical advice — education only' notice that cannot be removed or overridden by content or configuration; this notice is part of the generated artefact, not a UI overlay",
+    "The PLS capability is hard-blocked from generating or serving any output until BOTH a credentialed oncologist AND a patient advocate have recorded sign-off on the specific version; the sign-off store is append-only and cannot be bypassed by a maintainer",
+    "Sign-off is version-scoped: any material change to the PLS content (new version, new review findings, updated claims) re-triggers the dual sign-off gate; the staleness check runs before serving the PLS and blocks serving a stale-signed version",
+    "The dual sign-off is recorded in the governance log with: reviewer name, credential/role, the specific PLS version hash they approved, and the date; this log is the artefact that proves compliance",
+    "Tests cover: PLS derivation only from review findings, 'not medical advice' notice present, gate-blocked output before dual sign-off, sign-off recording, and staleness trigger on version change; all run in CI; pnpm build && pnpm test pass"
+  ],
+  "resources": [
+    "PLAN.md",
+    "TASKS.md",
+    "tasks/systematic-review-assist-reference-016.json",
+    "tasks/systematic-review-assist-pilot-017.json",
+    "tasks/systematic-review-assist-policy-001.json",
+    "CLAUDE.md"
+  ],
+  "output": "A merged PR adding the optional plain-language summary capability (core/pls) to @elyos/sra-core with: review-finding-derived generation, persistent 'not medical advice' notice, version-scoped blocking dual oncologist+advocate sign-off gate (cannot be bypassed), sign-off governance log, and a full test suite including gate-bypass resistance tests.",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "CC-BY-4.0"
+}

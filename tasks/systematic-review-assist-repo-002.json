@@ -1,0 +1,32 @@
+{
+  "id": "systematic-review-assist-repo-002",
+  "title": "Local-first monorepo: pnpm + TS/ESM library + CLI + CI (build/test/lint)",
+  "project": "systematic-review-assist",
+  "type": "code",
+  "lane": "donated",
+  "priority": "high",
+  "domain": ["software", "research-tooling", "systematic-review"],
+  "riskTier": "low",
+  "urgent": false,
+  "deliverable": "pr",
+  "tokenEstimate": "small",
+  "status": "open",
+  "context": "Systematic-Review-Assist needs a local-first project skeleton before any feature can be built. The tool runs as a library + CLI on the reviewer's own machine so that closed full text never has to leave their machine. It follows Elyos conventions: TypeScript, ESM, pnpm workspaces. The monorepo will host the core library (@elyos/sra-core), CLI (@elyos/sra-cli), and later an optional local web UI. No partner or review team is yet secured; verifiedNeed is false.",
+  "objective": "Scaffold the local-first pnpm monorepo with TypeScript/ESM packages for the core library and CLI, wire up a CI pipeline that runs build, test, and lint on every PR, and confirm the skeleton compiles and tests pass with zero failures.",
+  "acceptanceCriteria": [
+    "pnpm workspace contains at least two packages: @elyos/sra-core (library) and @elyos/sra-cli (CLI entry point); both compile under TypeScript strict mode with ESM output",
+    "CI pipeline (GitHub Actions or equivalent) runs pnpm build && pnpm test && pnpm lint on every push and PR; the pipeline is green on an empty implementation",
+    "The CLI is executable locally (e.g., node dist/cli.js --help) and prints a usage message without error",
+    "No secrets, tokens, or API keys are committed or logged; .gitignore covers node_modules, dist, and any .env files",
+    "pnpm build && pnpm test && pnpm lint all pass from the repo root"
+  ],
+  "resources": [
+    "PLAN.md",
+    "TASKS.md",
+    "CLAUDE.md"
+  ],
+  "output": "A merged PR containing the pnpm/TS/ESM monorepo skeleton with @elyos/sra-core and @elyos/sra-cli packages, a working CI pipeline, and green build/test/lint checks.",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "Apache-2.0"
+}
