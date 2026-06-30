@@ -1,0 +1,37 @@
+{
+  "id": "systematic-review-assist-reference-016",
+  "title": "Worked open-access cancer reference review (validation + teaching artefact + pivot fallback)",
+  "project": "systematic-review-assist",
+  "type": "research",
+  "lane": "donated",
+  "priority": "medium",
+  "domain": ["cancer", "evidence-synthesis", "systematic-review", "research"],
+  "riskTier": "medium",
+  "urgent": false,
+  "deliverable": "document",
+  "tokenEstimate": "large",
+  "status": "open",
+  "context": "The project's pivot/fallback deliverable (if no pilot review team is secured by ~2027-03-31) is a complete, openly-licensed, worked systematic review on open-access cancer literature produced with the tool. This reference review serves three purposes: (1) validation — it proves the tool works on a real review and demonstrates recall, extraction accuracy, and PRISMA conformance; (2) a teaching artefact — it shows methodologists and potential partners how to use the tool correctly; (3) pivot deliverable — if no pilot team is secured, releasing this review as a methods artefact constitutes a real output to the cancer research community. The review must be methodologist- and oncology-reviewed, with all licence/provenance controls applied. Depends on 014 (RoB assist) and 015 (PRISMA reporting). Cancer guardrails apply fully: open-access/aggregate/de-identified data only.",
+  "objective": "Conduct and document a complete, openly-licensed systematic review on a cancer topic (e.g. a rare cancer such as Ewing's sarcoma or a paediatric oncology topic) using the tool: define a registered protocol (PICO + PROSPERO registration or equivalent), import and screen open-access records via the tool's ingest and screening workflows, extract data using the extraction assist, assess risk of bias using the RoB assist, generate PRISMA artefacts, and produce a report that is methodologist- and oncology-reviewed and released under CC-BY-4.0.",
+  "acceptanceCriteria": [
+    "A registered protocol (PICO question, inclusion/exclusion criteria, outcome definitions, PROSPERO id or equivalent) is defined and committed to the repository before screening begins",
+    "Records are sourced from open-access databases (PubMed/MEDLINE metadata, PMC Open Access full text, or equivalent); all sources are verified via the rights gate (task 005) with licences recorded before ingest",
+    "The full screening workflow (title/abstract + full-text) is conducted using the tool; the AI screening assist proposes but humans confirm all dispositions; the audit log records every disposition with the human actor; recall on the review's included set is reported",
+    "Data extraction is conducted using the extraction assist with all values in proposed-unverified state until human-committed; the gold-standard extraction sheet (task 009 fixture) is updated or a new one created from this review",
+    "Risk-of-bias assessment is conducted using the RoB assist; humans assign all ratings; the RoB evidence and ratings are recorded in the provenance store",
+    "PRISMA 2020 artefacts are generated (flow diagram with reconciled counts, report scaffold, screening log export, extraction dataset export with licence/attribution manifest, reproducibility manifest)",
+    "The completed review document is reviewed and signed off by a methodologist (systematic-review methodologist) and an oncology-evidence reviewer before publication",
+    "The review document and dataset are released under CC-BY-4.0 with full attribution to sources and reviewers"
+  ],
+  "resources": [
+    "PLAN.md",
+    "TASKS.md",
+    "tasks/systematic-review-assist-rob-014.json",
+    "tasks/systematic-review-assist-prisma-015.json",
+    "CLAUDE.md"
+  ],
+  "output": "A complete, openly-licensed worked systematic review on an open-access cancer topic produced using the tool: registered protocol, screening log, extraction dataset with provenance, risk-of-bias assessment, PRISMA 2020 artefacts, reproducibility manifest, and the final review document — all methodologist- and oncology-reviewed and released under CC-BY-4.0.",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "CC-BY-4.0"
+}

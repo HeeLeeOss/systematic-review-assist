@@ -1,0 +1,35 @@
+{
+  "id": "systematic-review-assist-ingest-007",
+  "title": "Record import (RIS/BibTeX/PubMed-XML/CSV + ≥1 of Embase/CENTRAL) + transparent reversible dedup",
+  "project": "systematic-review-assist",
+  "type": "code",
+  "lane": "donated",
+  "priority": "high",
+  "domain": ["cancer", "evidence-synthesis", "systematic-review", "research-tooling", "software"],
+  "riskTier": "medium",
+  "urgent": false,
+  "deliverable": "pr",
+  "tokenEstimate": "large",
+  "status": "open",
+  "context": "A systematic review begins with the output of documented database searches: exports from PubMed/MEDLINE, Embase, Cochrane CENTRAL, and other sources in formats such as RIS, BibTeX, PubMed/MEDLINE XML, and CSV. Deduplication is the first processing step and must be transparent and reversible — every merge decision must be logged so counts feed the PRISMA flow and no record is permanently lost. The rights gate (task 005) runs at this boundary, classifying each source's licence before any content is stored or sent to the model. Depends on 005 (rights gate) and 006 (protocol, for field mapping).",
+  "objective": "Implement the ingest and deduplication module (core/ingest) in @elyos/sra-core: parsers for RIS, BibTeX, PubMed/MEDLINE XML, and CSV, plus at least one of Embase or Cochrane CENTRAL export formats; normalise records to a canonical internal type; run the rights gate (005) on each source at ingest, recording its licence; and implement transparent, reversible deduplication (DOI/PMID exact match plus conservative fuzzy title/author/year match) where every merge decision is logged and reversible, with counts available for the PRISMA flow.",
+  "acceptanceCriteria": [
+    "Parsers accept RIS, BibTeX, PubMed/MEDLINE XML, and CSV inputs and produce normalised canonical Record objects; at least one of Embase or Cochrane CENTRAL export formats is also supported",
+    "The rights gate (task 005) runs on each source at ingest: classifies the source (open-access full text / abstract-only / closed) and records its licence in the provenance store before any content is stored or sent to the model; non-compliant sources are refused with an explanation",
+    "Deduplication uses DOI/PMID exact match followed by conservative fuzzy title/author/year matching; every merge decision (which records were merged, the match key, the confidence) is written to the append-only audit log and is reversible",
+    "Dedup counts (identified, duplicates removed, unique records passed to screening) are available via an API to feed the PRISMA flow diagram",
+    "Tests cover: each import format, rights gate triggered at ingest, exact-match dedup, fuzzy-match dedup, merge log written and reversible, and non-compliant source refusal; all tests run in CI",
+    "pnpm build && pnpm test pass with ingest and dedup tests green"
+  ],
+  "resources": [
+    "PLAN.md",
+    "TASKS.md",
+    "tasks/systematic-review-assist-rights-005.json",
+    "tasks/systematic-review-assist-protocol-006.json",
+    "CLAUDE.md"
+  ],
+  "output": "A merged PR adding the record import parsers (RIS/BibTeX/PubMed-XML/CSV + at least one of Embase/CENTRAL), rights-gate integration at ingest, and transparent reversible deduplication to @elyos/sra-core (core/ingest), with a full test suite.",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "Apache-2.0"
+}

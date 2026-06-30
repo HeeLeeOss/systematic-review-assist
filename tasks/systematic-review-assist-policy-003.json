@@ -1,0 +1,34 @@
+{
+  "id": "systematic-review-assist-policy-003",
+  "title": "Methodology policy layer: no-autonomy invariant + recall-first contract + no-span-no-value, enforced in code + CI",
+  "project": "systematic-review-assist",
+  "type": "code",
+  "lane": "donated",
+  "priority": "high",
+  "domain": ["cancer", "evidence-synthesis", "systematic-review", "research-tooling", "software"],
+  "riskTier": "medium",
+  "urgent": false,
+  "deliverable": "pr",
+  "tokenEstimate": "large",
+  "status": "open",
+  "context": "The methodology & safety policy spec (task 001) defines the non-negotiables for this tool: no autonomous include/exclude or extraction, recall-first behaviour, 'no span, no value' provenance rule, source-rights gate, PII quarantine, and untrusted-content stance. This task implements those rules as a code-level, build-gating subsystem inside @elyos/sra-core. The policy layer is the single most important correctness gate in the project — a regression that lets the AI act autonomously or surface an unsourced assertion must fail the build. Depends on the policy spec (001) being signed off and the monorepo skeleton (002) being in place.",
+  "objective": "Implement the methodology policy layer (core/policy) that enforces the no-autonomy invariant (no AI-finalised disposition state; every disposition requires a recorded human actor), the recall-first contract (ambiguous/low-confidence routes to human as potential-include, never silently excludes), and the 'no span, no value' rule (unsourced assertions are rejected). The layer must be library-side, not overridable by document content (injection-resistant), and must ship with a test suite in which any violation fails the CI build.",
+  "acceptanceCriteria": [
+    "The data model has NO 'AI-finalised' disposition state; an exclusion record cannot be written without a recorded human actor field — an invariant test asserts this and fails the build if violated",
+    "Recall-first contract is enforced: the policy layer exposes no API that allows the assist to emit an exclusion disposition directly; ambiguous or low-confidence items are routed to human review as potential-include",
+    "'No span, no value' is enforced: any AI-proposed screening rationale or extraction assertion that lacks a verbatim source span is rejected by the policy layer and never surfaces to the reviewer",
+    "Policy enforcement is library-side (in @elyos/sra-core) and cannot be overridden by document or source content — injection-resistant cases are included in the test suite",
+    "The policy-layer test suite covers: no-autonomy invariant, recall-first routing, no-span-no-value rejection, and at least two prompt-injection scenarios; all tests are run in CI and a violation causes a build failure",
+    "pnpm build && pnpm test pass with the policy-layer suite green from the repo root"
+  ],
+  "resources": [
+    "PLAN.md",
+    "TASKS.md",
+    "tasks/systematic-review-assist-policy-001.json",
+    "CLAUDE.md"
+  ],
+  "output": "A merged PR adding core/policy to @elyos/sra-core with the no-autonomy invariant, recall-first contract, and no-span-no-value rule enforced in code, accompanied by a build-gating test suite covering all policy invariants and injection resistance.",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "Apache-2.0"
+}

@@ -1,0 +1,34 @@
+{
+  "id": "systematic-review-assist-rights-005",
+  "title": "Source-rights gate + PII/identifiable-data quarantine at ingest boundary",
+  "project": "systematic-review-assist",
+  "type": "code",
+  "lane": "donated",
+  "priority": "high",
+  "domain": ["cancer", "evidence-synthesis", "systematic-review", "research-tooling", "software", "data-licensing"],
+  "riskTier": "medium",
+  "urgent": false,
+  "deliverable": "pr",
+  "tokenEstimate": "medium",
+  "status": "open",
+  "context": "This tool handles published cancer literature and referenced cancer datasets. The Elyos cancer guardrails are binding: open-access/aggregate/de-identified data only; controlled-access sources (dbGaP, EGA, individual-level biobanks) and any identifiable patient data are out of scope. Per-source licence verification is mandatory before ingest, processing, or redistribution. Closed/subscriber content may only be processed locally and never redistributed; CC-BY-NC content must never be relicensed permissively. Case reports and supplementary materials can contain identifiable patient details and must be quarantined rather than sent to the model. This task implements both the rights gate and the PII quarantine at the ingest boundary, as specified in the policy spec (001). Depends on 001 (spec) and 004 (provenance store, to record licence + quarantine decisions).",
+  "objective": "Implement the source-rights gate and PII/identifiable-data quarantine in @elyos/sra-core at the ingest boundary: classify each source (open-access full text / abstract-only / closed), record its licence before any content is stored or sent to the model, refuse non-compliant ingest with an explanation, flag closed content as process-locally-only, keep CC-BY-NC non-commercial, and quarantine records that appear to contain identifiable patient data for human review rather than model processing.",
+  "acceptanceCriteria": [
+    "Each source record is classified (open-access full text / abstract-only / closed) and its licence is recorded in the provenance store BEFORE any content is stored, processed, or sent to the model; non-compliant ingest is refused with an explanation",
+    "Closed/subscriber content is flagged process-locally-only and is never sent to a remote model or written to shared outputs; CC-BY-NC content is flagged non-commercial and never relicensed under a permissive licence",
+    "Controlled-access sources (dbGaP, EGA, individual-level biobanks) and any identifiable patient data are hard-refused at ingest with a clear explanation referencing the cancer guardrails",
+    "Records that appear to contain identifiable patient information (names, MRNs, dates+locale combinations, identifiable images) are quarantined and surfaced to a human reviewer rather than sent to the model or written to shared outputs",
+    "The rights gate and PII quarantine are covered by tests including: open-access pass, closed-content local-only flag, CC-BY-NC non-commercial flag, controlled-access hard-refusal, and PII quarantine trigger; all tests run in CI",
+    "pnpm build && pnpm test pass with the rights gate and quarantine tests green"
+  ],
+  "resources": [
+    "PLAN.md",
+    "TASKS.md",
+    "tasks/systematic-review-assist-policy-001.json",
+    "CLAUDE.md"
+  ],
+  "output": "A merged PR adding the source-rights gate and PII/identifiable-data quarantine to the @elyos/sra-core ingest boundary, with per-source licence recording in the provenance store and a test suite covering all licence classes and quarantine triggers.",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "Apache-2.0"
+}

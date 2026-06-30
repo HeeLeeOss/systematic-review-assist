@@ -1,0 +1,36 @@
+{
+  "id": "systematic-review-assist-livingreview-021",
+  "title": "'Living review' update mode (re-screen new records on a cadence)",
+  "project": "systematic-review-assist",
+  "type": "code",
+  "lane": "donated",
+  "priority": "low",
+  "domain": ["cancer", "evidence-synthesis", "systematic-review", "research-tooling", "software"],
+  "riskTier": "medium",
+  "urgent": false,
+  "deliverable": "pr",
+  "tokenEstimate": "medium",
+  "status": "open",
+  "context": "A 'living review' is one that is updated on a regular cadence as new literature becomes available, rather than being a one-time effort. This mode re-runs the ingest, deduplication, and screening assist on new records retrieved since the last update, with all the same guardrails: recall-first, no auto-exclude, append-only audit, rights gate, provenance on every assertion. The recall kill-gate (task 012) applies equally to incremental updates. This feature is a backlog item, planned only after the core pipeline and at least one pilot topic are validated. It requires the same guardrails as the initial pipeline.",
+  "objective": "Implement a living-review update mode in @elyos/sra-core: given a previously completed review project, ingest new bibliographic records retrieved since the last search date, run deduplication against the existing record set, run the AI screening assist on new records (with all existing guardrails: no auto-exclude, recall-first, provenance, rights gate), surface new potential-includes to reviewers, and update the PRISMA flow counts and audit log without modifying historical records.",
+  "acceptanceCriteria": [
+    "The living-review mode accepts new record exports (in any format supported by task 007) with a search-date cutoff and deduplicates them against the existing project record set, logging all merges",
+    "The AI screening assist runs on new records with all existing guardrails: no auto-exclude, recall-first routing, provenance on every suggestion, rights gate at ingest, injection-resistant policy layer",
+    "New potential-includes are surfaced to reviewers in the dual-reviewer workspace (task 008) with clear labelling as 'new records from living-review update [date]'; historical records and dispositions are not modified",
+    "The PRISMA flow counts are updated to reflect the living-review update cycle (new identification, new screening, new included) without overwriting the original review's flow counts; the two cycles are distinguishable in the audit log",
+    "The recall kill-gate (task 012) applies to the living-review screening pass independently; if recall drops below 95% on a re-evaluation, the kill-gate triggers for the living-review mode",
+    "Tests cover: incremental dedup, living-review screening with all guardrails, PRISMA count update, and kill-gate trigger; all run in CI; pnpm build && pnpm test pass"
+  ],
+  "resources": [
+    "PLAN.md",
+    "TASKS.md",
+    "tasks/systematic-review-assist-ingest-007.json",
+    "tasks/systematic-review-assist-screening-011.json",
+    "tasks/systematic-review-assist-eval-012.json",
+    "CLAUDE.md"
+  ],
+  "output": "A merged PR adding a living-review update mode to @elyos/sra-core: incremental ingest, deduplication against existing records, recall-first AI screening assist on new records with all existing guardrails, living-review PRISMA count updates, and a full test suite.",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "Apache-2.0"
+}

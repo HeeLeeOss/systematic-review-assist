@@ -1,0 +1,33 @@
+{
+  "id": "systematic-review-assist-noncancer-024",
+  "title": "Generalise beyond cancer (re-scoped guardrails)",
+  "project": "systematic-review-assist",
+  "type": "design-spec",
+  "lane": "donated",
+  "priority": "low",
+  "domain": ["evidence-synthesis", "systematic-review", "research-tooling"],
+  "riskTier": "medium",
+  "urgent": false,
+  "deliverable": "document",
+  "tokenEstimate": "medium",
+  "status": "open",
+  "context": "The methodology in Systematic-Review-Assist generalises beyond cancer (systematic reviews are conducted across all clinical domains), but the current guardrails, gold-standard fixtures, eval evidence, and domain-specific extraction logic are all cancer-specific. Expansion to a non-cancer domain requires: re-scoping the guardrails for the new domain (e.g. which datasets are open/non-commercial, whether identifiable patient data rules change, what the equivalent of the oncologist+advocate gate is for patient-facing output in that domain); assembling a domain-appropriate gold-standard fixture; re-running the eval harness; and obtaining domain-appropriate expert review. This is a backlog design-spec task: it defines what would need to be done, not the implementation itself.",
+  "objective": "Write a design specification for generalising Systematic-Review-Assist beyond cancer: identify which guardrails are cancer-specific and how they would need to change for a new domain (e.g. cardiovascular, infectious disease, mental health); define a re-validation checklist (domain gold standard, recall eval, domain-expert review, patient-facing gate equivalent); and produce a decision framework for whether to expand to a given domain (benefit, risk tier, expert availability, dataset licensing).",
+  "acceptanceCriteria": [
+    "The spec identifies all cancer-specific guardrails and policies in the codebase (data-licensing rules, domain-expert gate requirements, patient-facing review gate) and for each one specifies: what is generic (unchanged for any domain), what is domain-specific (must be re-configured per domain), and what is cancer-specific (must be replaced for a new domain)",
+    "The spec defines a domain-expansion re-validation checklist: domain-appropriate gold-standard fixture, recall eval >= 95% on that fixture, domain expert (equivalent of oncology reviewer) sign-off, and a patient-facing gate equivalent if the domain requires one",
+    "The spec includes a decision framework for whether to expand to a given domain: expected beneficiaries and need, risk tier, availability of domain experts for review, availability of open-access literature for the gold standard, and licensing requirements",
+    "The spec explicitly states the rule that recall evidence from cancer does not transfer to a non-cancer domain and that each new domain requires independent validation",
+    "The spec is reviewed by a maintainer before being committed; it is a design document only, not an implementation — no code changes are included in this task"
+  ],
+  "resources": [
+    "PLAN.md",
+    "TASKS.md",
+    "tasks/systematic-review-assist-ops-018.json",
+    "CLAUDE.md"
+  ],
+  "output": "A committed design-specification document (docs/design/non-cancer-expansion-spec.md or equivalent) covering cancer-specific vs. generic guardrails, domain-expansion re-validation checklist, and a decision framework for new-domain expansion — released under CC-BY-4.0.",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "CC-BY-4.0"
+}

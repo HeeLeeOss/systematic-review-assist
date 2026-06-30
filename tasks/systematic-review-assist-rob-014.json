@@ -1,0 +1,35 @@
+{
+  "id": "systematic-review-assist-rob-014",
+  "title": "Risk-of-bias assist (surfaces verbatim evidence for RoB 2/ROBINS-I/QUADAS-2; human assigns rating)",
+  "project": "systematic-review-assist",
+  "type": "code",
+  "lane": "donated",
+  "priority": "medium",
+  "domain": ["cancer", "evidence-synthesis", "systematic-review", "research-tooling", "software"],
+  "riskTier": "medium",
+  "urgent": false,
+  "deliverable": "pr",
+  "tokenEstimate": "medium",
+  "status": "open",
+  "context": "Risk-of-bias (RoB) assessment is a required step in a PRISMA-compliant systematic review: for each included study, reviewers judge the risk of bias using a structured instrument (RoB 2 for randomised trials, ROBINS-I for non-randomised interventions, QUADAS-2 for diagnostic accuracy studies). This is expert judgement; the AI must not assign a rating. The assist's role is to surface the verbatim text from the study relevant to each RoB item so the human reviewer can find and judge the evidence more efficiently. The human records the supporting quote, their rating, and their reasoning. Depends on 013 (extraction assist, for accessing included studies and their full text).",
+  "objective": "Implement the risk-of-bias assist (core/rob) in @elyos/sra-core: for each included study and each item in the selected RoB instrument (RoB 2, ROBINS-I, or QUADAS-2), retrieve and surface the verbatim text from the study most relevant to that item; the human reviewer records the supporting quote (or 'no relevant text found'), their RoB rating for that item (low/some concerns/high), and their reasoning; the tool records all three in the provenance store. The AI never assigns a RoB rating.",
+  "acceptanceCriteria": [
+    "Supports at least RoB 2 (randomised trials); support for ROBINS-I and QUADAS-2 is implemented or clearly stubbed for follow-on implementation",
+    "For each RoB item in the selected instrument, the assist retrieves and surfaces the verbatim text from the study most relevant to that item, with a source location (page/section); if no relevant text is found, the item is flagged as 'no relevant text found' for the human",
+    "The human reviewer records: the supporting quote they selected (or 'no relevant text found'), their RoB rating for the item (low risk / some concerns / high risk), and their reasoning; the tool commits all three to the provenance store with the human actor, timestamp, and source location",
+    "The AI NEVER assigns a RoB rating; the RobItem type has no AI-rating field; the only rating field is human-assigned; tests assert this invariant",
+    "Each RoB evidence surface and human judgement record carries a Provenance record; the policy layer rejects writes without one",
+    "Tests cover: evidence surfacing per instrument item, human-assigns-rating invariant, no-relevant-text-found case, and provenance on every record; all run in CI; pnpm build && pnpm test pass"
+  ],
+  "resources": [
+    "PLAN.md",
+    "TASKS.md",
+    "tasks/systematic-review-assist-extraction-013.json",
+    "tasks/systematic-review-assist-policy-003.json",
+    "CLAUDE.md"
+  ],
+  "output": "A merged PR adding the risk-of-bias assist (core/rob) to @elyos/sra-core supporting RoB 2 (and stubs for ROBINS-I/QUADAS-2), with verbatim evidence surfacing, human-only rating assignment enforced structurally, and a full test suite.",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "Apache-2.0"
+}

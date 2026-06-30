@@ -1,0 +1,35 @@
+{
+  "id": "systematic-review-assist-secondtopic-020",
+  "title": "Second review topic / second cancer pack (re-validated recall)",
+  "project": "systematic-review-assist",
+  "type": "data",
+  "lane": "donated",
+  "priority": "low",
+  "domain": ["cancer", "evidence-synthesis", "systematic-review", "data"],
+  "riskTier": "medium",
+  "urgent": false,
+  "deliverable": "dataset",
+  "tokenEstimate": "large",
+  "status": "open",
+  "context": "Recall estimates from the first pilot topic (task 017) are version-scoped and do not transfer to a new cancer topic. Expanding to a second review topic requires a full re-validation: a new gold-standard fixture for the new topic, a new eval harness run, methodologist sign-off on the recall claim, and oncology-reviewer sign-off on domain-specific extraction logic. This task is strictly post-M6 (after the first pilot has completed and the maintenance rotation is in place). Only after the cancer validation is solid should a second topic be added.",
+  "objective": "Assemble a gold-standard fixture for a second cancer review topic and run the full re-validation pipeline: ingest open-access records, apply gold-standard labels, run the eval harness to measure recall and WSS@95, update extraction accuracy metrics, obtain methodologist and oncology-reviewer sign-off, and update the project documentation to reflect the expanded validated scope.",
+  "acceptanceCriteria": [
+    "A gold-standard fixture for a second cancer topic is assembled from open-access literature following the same process as task 009 (verified licences, provenance documentation, representativeness notes)",
+    "The eval harness (task 012) is run against the new fixture and produces a new versioned eval report for the second topic; recall >= 95% (with 95% CI) must be demonstrated independently for this topic before any recall claim is made for it",
+    "A methodologist signs off the recall claim for the second topic (version-scoped, does not inherit from the first topic sign-off); an oncology-evidence reviewer signs off domain-specific extraction logic for the second cancer type",
+    "The project documentation is updated to list the validated topics and their independent recall evidence; the docs make clear that recall for a third topic is not assumed to transfer",
+    "The dataset and updated docs are released under CC-BY-4.0 with full attribution"
+  ],
+  "resources": [
+    "PLAN.md",
+    "TASKS.md",
+    "tasks/systematic-review-assist-fixture-009.json",
+    "tasks/systematic-review-assist-eval-012.json",
+    "tasks/systematic-review-assist-ops-018.json",
+    "CLAUDE.md"
+  ],
+  "output": "A gold-standard fixture dataset for a second cancer review topic with verified licences and provenance, a versioned eval report showing independently validated recall >= 95% for the new topic, methodologist and oncology-reviewer sign-offs, and updated project documentation reflecting the expanded validated scope — all released under CC-BY-4.0.",
+  "requestor": "TO BE SECURED",
+  "verifiedNeed": false,
+  "outputLicense": "CC-BY-4.0"
+}
