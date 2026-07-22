@@ -12,7 +12,7 @@
   "tokenEstimate": "medium",
   "status": "open",
   "context": "A PRISMA 2020-compliant systematic review requires a flow diagram whose record counts reconcile across identification, screening, eligibility, and included stages; a report scaffold covering PRISMA 2020 checklist items; exports of the screening log and extraction dataset for hand-off to statistical tools; a per-output licence + attribution manifest; and a reproducibility manifest that lets the AI-assisted steps be re-derived. WCAG 2.2 AA accessibility is required for the local review UI surfaces. Depends on 008 (screening audit log), 012 (eval harness, whose counts feed the flow), and 013 (extraction dataset).",
-  "objective": "Implement PRISMA reporting, export, and reproducibility (core/prisma) in @elyos/sra-core: generate a PRISMA 2020 flow diagram whose counts reconcile to the identification/screening/eligibility/included logs; produce a report scaffold covering PRISMA 2020 checklist items; export the screening log and extraction dataset as CSV and JSON with a per-output licence + attribution manifest; and produce a reproducibility manifest (model id+version+prompt hash per AI-assisted step, human actors) so the AI-assisted steps of a completed review can be re-derived.",
+  "objective": "Implement PRISMA reporting, export, and reproducibility (core/prisma) in @hee-lee-oss/sra-core: generate a PRISMA 2020 flow diagram whose counts reconcile to the identification/screening/eligibility/included logs; produce a report scaffold covering PRISMA 2020 checklist items; export the screening log and extraction dataset as CSV and JSON with a per-output licence + attribution manifest; and produce a reproducibility manifest (model id+version+prompt hash per AI-assisted step, human actors) so the AI-assisted steps of a completed review can be re-derived.",
   "acceptanceCriteria": [
     "The PRISMA 2020 flow diagram generator reads counts from the audit log (identification, dedup, screening, eligibility, included) and emits a diagram whose counts reconcile (sum checks pass); reconciliation failures are surfaced as errors, not silently swallowed",
     "A PRISMA 2020 report scaffold is generated covering the required checklist items; each item links to the relevant section of the audit log or extraction dataset for evidence",
@@ -29,7 +29,7 @@
     "tasks/systematic-review-assist-extraction-013.json",
     "CLAUDE.md"
   ],
-  "output": "A merged PR adding PRISMA 2020 flow diagram generation, report scaffold, CSV/JSON export with licence/attribution manifests, and reproducibility manifests to @elyos/sra-core (core/prisma), with WCAG 2.2 AA on local UI surfaces and a full test suite.",
+  "output": "A merged PR adding PRISMA 2020 flow diagram generation, report scaffold, CSV/JSON export with licence/attribution manifests, and reproducibility manifests to @hee-lee-oss/sra-core (core/prisma), with WCAG 2.2 AA on local UI surfaces and a full test suite.",
   "requestor": "TO BE SECURED",
   "verifiedNeed": false,
   "outputLicense": "Apache-2.0"

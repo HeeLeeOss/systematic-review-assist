@@ -12,7 +12,7 @@
   "tokenEstimate": "large",
   "status": "open",
   "context": "Data extraction is the second major labour-intensive stage of a systematic review: for each included study, reviewers extract dozens of typed fields (study design, population, interventions, outcomes, effect estimates, etc.) from the full text. The AI extraction assist must propose typed values each bound to a verbatim source span and location; values land in a 'proposed, unverified' state and require a human to verify/edit/confirm before they are committed to the extraction dataset. 'No span, no value' is a hard invariant: if no verbatim span is available, the field is left for manual entry. Depends on 003 (policy layer, enforces no-span-no-value), 006 (protocol, defines the extraction field schema), and 010 (LLM client).",
-  "objective": "Implement the span-grounded extraction assist (core/extraction) in @elyos/sra-core: for each included study and each field in the protocol's ExtractionSchema, propose a typed value bound to a verbatim source span and character/section location; values are written in a 'proposed, unverified' state; a human verifies/edits each field before it is committed to the extraction dataset (the policy layer enforces this two-step); 'no span, no value' is enforced — if no span is found, the field is left empty for manual entry.",
+  "objective": "Implement the span-grounded extraction assist (core/extraction) in @hee-lee-oss/sra-core: for each included study and each field in the protocol's ExtractionSchema, propose a typed value bound to a verbatim source span and character/section location; values are written in a 'proposed, unverified' state; a human verifies/edits each field before it is committed to the extraction dataset (the policy layer enforces this two-step); 'no span, no value' is enforced — if no span is found, the field is left empty for manual entry.",
   "acceptanceCriteria": [
     "For each included study and each defined ExtractionSchema field, the extraction assist proposes a typed ExtractionProposal containing: the field id, proposed value (typed per the schema), the verbatim source span, and the character/section location in the source text",
     "'No span, no value' is enforced: if no verbatim span can be found for a field, the ExtractionProposal for that field is left empty (no value, no placeholder) and the field is routed to manual entry; the policy layer rejects any attempt to commit a value without a span",
@@ -29,7 +29,7 @@
     "tasks/systematic-review-assist-llm-010.json",
     "CLAUDE.md"
   ],
-  "output": "A merged PR adding the span-grounded extraction assist (core/extraction) to @elyos/sra-core, with typed ExtractionProposals, 'no span, no value' enforcement, proposed-unverified state, human-commit transition, and a full test suite.",
+  "output": "A merged PR adding the span-grounded extraction assist (core/extraction) to @hee-lee-oss/sra-core, with typed ExtractionProposals, 'no span, no value' enforcement, proposed-unverified state, human-commit transition, and a full test suite.",
   "requestor": "TO BE SECURED",
   "verifiedNeed": false,
   "outputLicense": "Apache-2.0"

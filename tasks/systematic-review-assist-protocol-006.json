@@ -12,7 +12,7 @@
   "tokenEstimate": "medium",
   "status": "open",
   "context": "Before any screening or extraction can begin, a systematic review team must register a protocol that defines the clinical question (PICO/PICOS), structured inclusion and exclusion criteria, a registered protocol link (e.g. PROSPERO id), outcome definitions, and the extraction field schema for the review. This structured protocol drives both screening rationales (which criterion was applied) and extraction (which fields to populate). Without machine-readable criteria, the AI assist cannot cite a specific criterion in its rationale, violating the no-span-no-value and traceability requirements. Depends on the monorepo skeleton (002).",
-  "objective": "Implement the PRISMA-aware protocol and eligibility model (core/protocol) in @elyos/sra-core: define typed schemas for a PICO(S) question, structured inclusion/exclusion criteria as machine-readable rules, a registered-protocol link (PROSPERO id), outcome definitions, and a per-review extraction field schema; expose APIs for loading, validating, and referencing criteria by id so screening rationales and extraction proposals can cite them.",
+  "objective": "Implement the PRISMA-aware protocol and eligibility model (core/protocol) in @hee-lee-oss/sra-core: define typed schemas for a PICO(S) question, structured inclusion/exclusion criteria as machine-readable rules, a registered-protocol link (PROSPERO id), outcome definitions, and a per-review extraction field schema; expose APIs for loading, validating, and referencing criteria by id so screening rationales and extraction proposals can cite them.",
   "acceptanceCriteria": [
     "A Protocol type is defined covering: research question (PICO/PICOS components — Population, Intervention, Comparator, Outcome, Study design), structured inclusion/exclusion criteria as named, referenceable rules, a registered-protocol link (PROSPERO id or equivalent), and outcome definitions",
     "A per-review ExtractionSchema type defines typed extraction fields (name, type, unit, description) that map to the review's data extraction form",
@@ -26,7 +26,7 @@
     "TASKS.md",
     "CLAUDE.md"
   ],
-  "output": "A merged PR adding the Protocol, eligibility criteria, and ExtractionSchema types and APIs to @elyos/sra-core (core/protocol), with tests covering the protocol model, validation, and criterion lookup.",
+  "output": "A merged PR adding the Protocol, eligibility criteria, and ExtractionSchema types and APIs to @hee-lee-oss/sra-core (core/protocol), with tests covering the protocol model, validation, and criterion lookup.",
   "requestor": "TO BE SECURED",
   "verifiedNeed": false,
   "outputLicense": "Apache-2.0"

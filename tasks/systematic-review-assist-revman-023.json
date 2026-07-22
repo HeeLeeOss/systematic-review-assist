@@ -12,7 +12,7 @@
   "tokenEstimate": "small",
   "status": "open",
   "context": "Systematic-Review-Assist explicitly does not perform statistical meta-analysis; that is left to established tools (R metafor, RevMan, etc.). Once data extraction and risk-of-bias assessment are complete, reviewers need to hand off the extraction dataset in a format compatible with their statistical tool of choice. This task adds export adapters for clean data hand-off. No statistics are computed in-tool. The task is backlog because the core pipeline must be validated first.",
-  "objective": "Implement export adapters in @elyos/sra-core for clean data hand-off to R metafor and RevMan: produce a metafor-compatible CSV (with column naming aligned to metafor's effect-size functions) and a RevMan-compatible XML or CSV export from the committed extraction dataset; no statistical calculations are performed in-tool; each export includes the per-output licence + attribution manifest.",
+  "objective": "Implement export adapters in @hee-lee-oss/sra-core for clean data hand-off to R metafor and RevMan: produce a metafor-compatible CSV (with column naming aligned to metafor's effect-size functions) and a RevMan-compatible XML or CSV export from the committed extraction dataset; no statistical calculations are performed in-tool; each export includes the per-output licence + attribution manifest.",
   "acceptanceCriteria": [
     "A metafor-compatible CSV export is generated from the committed extraction dataset with column naming and structure aligned to metafor's standard effect-size input format (documented with a reference to the metafor documentation)",
     "A RevMan-compatible export (XML or CSV as RevMan accepts) is generated from the committed extraction dataset; the format is documented with a reference to the RevMan import specification",
@@ -27,7 +27,7 @@
     "tasks/systematic-review-assist-prisma-015.json",
     "CLAUDE.md"
   ],
-  "output": "A merged PR adding metafor-compatible CSV and RevMan-compatible export adapters to @elyos/sra-core, with per-output licence manifests, no in-tool statistics, and a test suite covering both export formats.",
+  "output": "A merged PR adding metafor-compatible CSV and RevMan-compatible export adapters to @hee-lee-oss/sra-core, with per-output licence manifests, no in-tool statistics, and a test suite covering both export formats.",
   "requestor": "TO BE SECURED",
   "verifiedNeed": false,
   "outputLicense": "Apache-2.0"

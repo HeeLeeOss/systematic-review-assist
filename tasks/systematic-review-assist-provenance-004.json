@@ -12,7 +12,7 @@
   "tokenEstimate": "medium",
   "status": "open",
   "context": "Every assertion in Systematic-Review-Assist — every screening disposition, extracted value, and risk-of-bias evidence — must carry a provenance record: source id, citation (DOI/PMID), retrieval date, verbatim span + character/section location, licence/legal-status note, model id + version + prompt hash (for AI-proposed items), human actor + decision, and timestamp. The store must be append-only so the audit trail is tamper-evident. The project must also be self-contained and portable (SQLite via a thin data layer; JSON/CSV exports) so a review is a version-controllable artefact that can run in low-resource settings. Depends on the monorepo skeleton (002).",
-  "objective": "Implement the provenance/audit data model and portable project store in @elyos/sra-core: define the Provenance record type (source, citation, retrieval date, verbatim span + location, licence note, model id+version+prompt hash, human actor, action, timestamp); implement an append-only SQLite-backed store via a thin data layer; expose typed read/write APIs; and add tests that assert no assertion may exist without a provenance record.",
+  "objective": "Implement the provenance/audit data model and portable project store in @hee-lee-oss/sra-core: define the Provenance record type (source, citation, retrieval date, verbatim span + location, licence note, model id+version+prompt hash, human actor, action, timestamp); implement an append-only SQLite-backed store via a thin data layer; expose typed read/write APIs; and add tests that assert no assertion may exist without a provenance record.",
   "acceptanceCriteria": [
     "A typed Provenance record is defined with all required fields: source id, citation (DOI/PMID), retrieval date, verbatim span + location, licence/legal-status note, model id + version + prompt hash (for AI items), human actor, action, and timestamp",
     "The project store is append-only: writes add new records; no update/delete API exists; tests assert the append-only invariant",
@@ -27,7 +27,7 @@
     "tasks/systematic-review-assist-policy-001.json",
     "CLAUDE.md"
   ],
-  "output": "A merged PR adding the Provenance type, append-only portable SQLite project store, and typed read/write APIs to @elyos/sra-core, with tests asserting the append-only invariant and provenance coverage on all assertions.",
+  "output": "A merged PR adding the Provenance type, append-only portable SQLite project store, and typed read/write APIs to @hee-lee-oss/sra-core, with tests asserting the append-only invariant and provenance coverage on all assertions.",
   "requestor": "TO BE SECURED",
   "verifiedNeed": false,
   "outputLicense": "Apache-2.0"

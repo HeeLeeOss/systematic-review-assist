@@ -7,7 +7,7 @@
 Open, PRISMA-aware tooling that helps human teams **screen** studies and **extract** data for cancer
 systematic reviews, with the AI acting strictly as an assistive **second pair of eyes** — never as an
 autonomous decider. Every AI suggestion is recall-first, provenance-linked back to the exact source
-text, and confirmed by a human reviewer before it counts. The project is bound by the Elyos **cancer
+text, and confirmed by a human reviewer before it counts. The project is bound by the Hee-Lee Oss **cancer
 guardrails**: only open-access / aggregate / de-identified data; per-source license verification;
 no medical advice; provenance on every assertion.
 
@@ -230,15 +230,15 @@ where possible offers the compliant alternative (e.g. "process this locally with
 
 ## Solution approach & architecture
 
-**Stack.** TypeScript, ESM, pnpm workspaces (mirrors Elyos conventions). Core delivered as a
-**library + CLI** (`@elyos/sra-core`, `@elyos/sra-cli`) so it runs locally on a reviewer's machine
+**Stack.** TypeScript, ESM, pnpm workspaces (mirrors Hee-Lee Oss conventions). Core delivered as a
+**library + CLI** (`@hee-lee-oss/sra-core`, `@hee-lee-oss/sra-cli`) so it runs locally on a reviewer's machine
 without sending closed full text to a server; an **optional local web UI** (the screening/extraction
 review surface) runs against the local store. Persistence: a portable, file-based project store
 (SQLite via a thin data layer; JSON/CSV exports) so a review is a self-contained, version-controllable
 artefact — no required cloud database, important for both privacy and low-resource use. Reasoning:
 Anthropic Claude behind a **provider-neutral LLM client** (`adapters/llm`, Claude first; model
 selection/pricing per the Claude API skill) so the agent-neutral core has **no vendor-specific
-logic** (Elyos core/adapter rule). Code licence **Apache-2.0** (patent grant; see *Data, licensing*);
+logic** (Hee-Lee Oss core/adapter rule). Code licence **Apache-2.0** (patent grant; see *Data, licensing*);
 content/datasets **CC-BY-4.0**.
 
 **Components**
@@ -313,7 +313,7 @@ content/datasets **CC-BY-4.0**.
   finalised" disposition state; every disposition row requires a human actor.
 - **Local-first** execution and a portable project store so closed full text never leaves the
   reviewer's machine and a review is a reproducible, ownable artefact.
-- Agent-neutral core; all Anthropic/Claude specifics behind the LLM client (Elyos core/adapter rule).
+- Agent-neutral core; all Anthropic/Claude specifics behind the LLM client (Hee-Lee Oss core/adapter rule).
 - Cancer-first validation; patient-facing output is a separate, hard-gated, late, optional capability.
 
 ---
@@ -321,7 +321,7 @@ content/datasets **CC-BY-4.0**.
 ## Data, licensing & compliance
 
 **Cancer guardrails (binding — these lead).** This project handles published cancer literature and
-references the datasets cancer reviews cite. The Elyos cancer guardrails are absolute:
+references the datasets cancer reviews cite. The Hee-Lee Oss cancer guardrails are absolute:
 
 - **Open-access / aggregate / de-identified data ONLY.** **Controlled-access sources (dbGaP, EGA,
   individual-level biobanks) and ANY identifiable patient data are OUT OF SCOPE** — they require
@@ -372,7 +372,7 @@ that appears to contain identifiable patient information (names, MRNs, dates+loc
 images) is **quarantined** and surfaced to a human rather than sent to the model or stored in shared
 outputs. No patient data is ever used for any purpose beyond the review, and **no controlled-access or
 individual-level data is ingested at all**. No secrets, tokens, or PII are written to logs, receipts,
-or committed files (Elyos rule); the audit log records *that* an action happened and *which source*,
+or committed files (Hee-Lee Oss rule); the audit log records *that* an action happened and *which source*,
 not sensitive content.
 
 **Output licensing.** Code: **Apache-2.0** (permissive + explicit patent grant, good for a research
@@ -489,7 +489,7 @@ the dual oncologist/advocate sign-off and is never on the critical path.
 ## Work breakdown
 
 The itemized, schema-mapped backlog lives in **`TASKS.md`**: ~17 tasks across milestones M0–M6 plus a
-future backlog, each mapped to the Elyos Task JSON schema, with per-task acceptance criteria for the
+future backlog, each mapped to the Hee-Lee Oss Task JSON schema, with per-task acceptance criteria for the
 most important items, milestone Definitions of Done, and a complete example Task JSON for the first M0
 task (the methodology & safety policy specification). The **first build item** is that policy spec —
 reflecting its status as the hard product requirement — followed by the local-first skeleton and the
@@ -520,9 +520,9 @@ kill-gate** (M2) are sequenced so feature reliance is gated on proven recall, no
 - **Partner / requestor: TO BE SECURED** — the pilot review team / sponsoring organisation (rare-cancer
   foundation research arm, evidence-synthesis/HTA unit, Cochrane-style group, advocacy research program).
 - **Community / board:** licence choices and edge-cases (e.g. AI-as-second-screener acceptability) go
-  through Elyos governance. **Disagreement fallback:** on substance, the relevant expert (methodologist
+  through Hee-Lee Oss governance. **Disagreement fallback:** on substance, the relevant expert (methodologist
   for rigour; oncologist+advocate for patient-facing) holds the veto; disagreements are logged and
-  escalated to Elyos governance / a second reviewer for a tie-break.
+  escalated to Hee-Lee Oss governance / a second reviewer for a tie-break.
 
 ---
 
@@ -538,8 +538,8 @@ kill-gate** (M2) are sequenced so feature reliance is gated on proven recall, no
 - **Standards / upstreams:** PRISMA 2020 statement + flow diagram; PROSPERO protocol registration;
   risk-of-bias instruments (RoB 2, ROBINS-I, QUADAS-2); WSS@95 screening-evaluation metric. Hand-off to
   statistical tools (R `metafor`, RevMan).
-- **Elyos pieces:** `packages/schema` (Task JSON), `CLAUDE.md` work rules + refusal guardrails,
-  `docs/good-deed-definition.md` (risk tiers), Elyos governance for licence/edge-case decisions.
+- **Hee-Lee Oss pieces:** `packages/schema` (Task JSON), `CLAUDE.md` work rules + refusal guardrails,
+  `docs/good-deed-definition.md` (risk tiers), Hee-Lee Oss governance for licence/edge-case decisions.
 - **Human/decision dependencies (critical path):** a secured **methodologist reviewer** (blocks public
   recall claims / M2 acceptance), a secured **pilot review team + topic** (blocks M5), and — only for
   the optional patient-facing capability — a secured **oncologist + patient advocate** (blocks M6 PLS).
@@ -584,9 +584,9 @@ construction is library-side and cannot be overridden by document content; injec
 test suite. Per-source licence verification before ingest; closed content processed locally only,
 never redistributed. **PII/identifiable-data quarantine** at ingest; no controlled-access or
 individual-level data at all. **No secrets, tokens, or PII in logs, receipts, or committed files**
-(Elyos rule); the append-only audit log records action + source + actor + model/version, not sensitive
+(Hee-Lee Oss rule); the append-only audit log records action + source + actor + model/version, not sensitive
 content. Dependency + secret scanning in CI. The funded lane is **not used** here (donated lane); if
-ever used for batch screening it would carry a hard per-task budget cap (Elyos rule).
+ever used for batch screening it would carry a hard per-task budget cap (Hee-Lee Oss rule).
 
 **Abuse/misuse prevention.** The refused set — autonomous exclusion/extraction, ingesting/
 redistributing non-open content, controlled-access/identifiable data, medical-advice generation,
@@ -617,7 +617,7 @@ advocate gate on every material change.
   approves AI-as-second-screener.)
 - **Recall threshold & evidence:** is ≥ 95% the right bar for the pilot topic, and is the gold-standard
   review representative enough to support a published recall claim? Confirmed with the methodologist.
-- **Code licence: Apache-2.0** (proposed, for patent grant) — confirm vs. MIT via Elyos governance.
+- **Code licence: Apache-2.0** (proposed, for patent grant) — confirm vs. MIT via Hee-Lee Oss governance.
 - **How far to support closed full text locally** (e.g. local-only OCR/parsing) without ever creating
   a redistribution or TDM-terms risk?
 - **Patient-facing summaries — build at all?** Optional and HIGH-tier; only if a partner needs it and
@@ -629,7 +629,7 @@ advocate gate on every material change.
 
 - Proposal: `governance/proposals/systematic-review-assist.md` *(TO BE WRITTEN — not yet drafted)*
 - Roadmap entry: `planning/ROADMAP.md` (Track 8b — `systematic-review-assist`, ⚪ medium)
-- Elyos work rules & refusal guardrails: `CLAUDE.md`
+- Hee-Lee Oss work rules & refusal guardrails: `CLAUDE.md`
 - Good-deed definition & risk tiers: `docs/good-deed-definition.md`
 - Task JSON schema: `packages/schema/src/schemas.ts`
 - House-style sibling plans: `planning/projects/public-official-guide/{PLAN,TASKS}.md`,
@@ -722,7 +722,7 @@ stated as binding: open-access/aggregate/de-identified only; controlled-access (
 identifiable data out of scope; per-source verification; COSMIC/OncoKB non-commercial vs. TCGA/GEO/
 PRIDE open. (b) HIGH-risk patient-facing output has a **blocking** oncologist **and** advocate gate
 that a maintainer cannot override, with persistent "not medical advice". (c) The core is agent-neutral
-with all Claude specifics behind the LLM adapter (Elyos rule); the CLI/library never runs autonomous
+with all Claude specifics behind the LLM adapter (Hee-Lee Oss rule); the CLI/library never runs autonomous
 decisions. (d) Honest `TO BE SECURED` / `verifiedNeed: false` throughout — no partner is invented.
 (e) Outcome-based success metrics (reviews completed/accelerated, recall maintained), not vanity.
 

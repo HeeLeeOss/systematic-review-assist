@@ -11,11 +11,11 @@
   "deliverable": "pr",
   "tokenEstimate": "small",
   "status": "open",
-  "context": "The Elyos core/adapter rule requires that the agent-neutral core (@elyos/sra-core) contains no vendor-specific logic; all Anthropic/Claude specifics must live behind a provider-neutral LLM client interface in an adapter. This adapter is used by the screening assist (011), extraction assist (013), and risk-of-bias assist (014). The adapter supports model tiering: a cheaper/faster model for triage and extraction passes, and a stronger model for ambiguous adjudication-support cases. Claude is the first implementation. Depends on the monorepo skeleton (002).",
-  "objective": "Implement a provider-neutral LLM client interface in an adapters package and a Claude-backed implementation: define a typed LLMClient interface (prompt, structured output, model selection); implement it using the Anthropic SDK behind the adapter boundary so @elyos/sra-core never imports a vendor SDK directly; support model tiering (fast/cheap model for triage, stronger model for adjudication-support); and add integration-skipped unit tests that verify the interface contract without requiring an API key in CI.",
+  "context": "The Hee-Lee Oss core/adapter rule requires that the agent-neutral core (@hee-lee-oss/sra-core) contains no vendor-specific logic; all Anthropic/Claude specifics must live behind a provider-neutral LLM client interface in an adapter. This adapter is used by the screening assist (011), extraction assist (013), and risk-of-bias assist (014). The adapter supports model tiering: a cheaper/faster model for triage and extraction passes, and a stronger model for ambiguous adjudication-support cases. Claude is the first implementation. Depends on the monorepo skeleton (002).",
+  "objective": "Implement a provider-neutral LLM client interface in an adapters package and a Claude-backed implementation: define a typed LLMClient interface (prompt, structured output, model selection); implement it using the Anthropic SDK behind the adapter boundary so @hee-lee-oss/sra-core never imports a vendor SDK directly; support model tiering (fast/cheap model for triage, stronger model for adjudication-support); and add integration-skipped unit tests that verify the interface contract without requiring an API key in CI.",
   "acceptanceCriteria": [
     "A typed LLMClient interface is defined in the adapters package with at minimum: a method accepting a prompt + optional structured-output schema and a model-tier hint (triage / adjudication), returning a typed structured response",
-    "A ClaudeClient implementation uses the Anthropic SDK and is the only place in the codebase where an Anthropic SDK import appears; @elyos/sra-core imports only the LLMClient interface, never the Anthropic SDK",
+    "A ClaudeClient implementation uses the Anthropic SDK and is the only place in the codebase where an Anthropic SDK import appears; @hee-lee-oss/sra-core imports only the LLMClient interface, never the Anthropic SDK",
     "Model tiering is supported: the triage tier uses a faster/cheaper model; the adjudication-support tier uses a stronger model; the tier mapping is configurable and documented",
     "No API keys, tokens, or credentials are hard-coded, committed, or logged; the adapter reads credentials from environment variables and logs only that a call was made (not its content)",
     "Unit tests (with the actual API call mocked/skipped) verify the interface contract: correct model-tier routing, structured-output parsing, and error handling; all tests run in CI without an API key",
@@ -26,7 +26,7 @@
     "TASKS.md",
     "CLAUDE.md"
   ],
-  "output": "A merged PR adding the provider-neutral LLMClient interface and Claude-backed ClaudeClient adapter to the adapters package, with model tiering, no vendor imports in @elyos/sra-core, and unit tests verifying the interface contract.",
+  "output": "A merged PR adding the provider-neutral LLMClient interface and Claude-backed ClaudeClient adapter to the adapters package, with model tiering, no vendor imports in @hee-lee-oss/sra-core, and unit tests verifying the interface contract.",
   "requestor": "TO BE SECURED",
   "verifiedNeed": false,
   "outputLicense": "Apache-2.0"

@@ -12,7 +12,7 @@
   "tokenEstimate": "large",
   "status": "open",
   "context": "Before the AI screening assist (task 011) is introduced, the tool must establish the human-only baseline workflow: two independent reviewers each screen every record (title/abstract then full text), disagreements are flagged for adjudication by a third reviewer or consensus, and every disposition is recorded with the human actor, reason, and timestamp in an append-only audit trail. This establishes both the methodological gold standard and the audit-trail data model that the AI assist will later plug into. No AI suggestions exist at this stage. Depends on 003 (policy layer, which enforces that every disposition has a human actor), 004 (provenance store), and 007 (ingest, to have records to screen).",
-  "objective": "Implement the human dual-reviewer screening workspace in @elyos/sra-core and @elyos/sra-cli: two independent reviewers each record include/exclude/uncertain dispositions with a reason for each record (title/abstract stage, then full-text stage); conflicts (disagreements between reviewers) are flagged and routed to adjudication; every disposition is written to the append-only audit log with the human actor, disposition, reason, stage (title-abstract/full-text), and timestamp. No AI is involved at this stage.",
+  "objective": "Implement the human dual-reviewer screening workspace in @hee-lee-oss/sra-core and @hee-lee-oss/sra-cli: two independent reviewers each record include/exclude/uncertain dispositions with a reason for each record (title/abstract stage, then full-text stage); conflicts (disagreements between reviewers) are flagged and routed to adjudication; every disposition is written to the append-only audit log with the human actor, disposition, reason, stage (title-abstract/full-text), and timestamp. No AI is involved at this stage.",
   "acceptanceCriteria": [
     "Two independent reviewers can each record include/exclude/uncertain dispositions with a mandatory reason for every record at title/abstract stage; a separate full-text screening stage follows for records not excluded at title/abstract",
     "Conflicts (records where two reviewers disagree) are automatically detected and routed to a third-reviewer adjudication step; the adjudicator records the final disposition with a reason",
@@ -29,7 +29,7 @@
     "tasks/systematic-review-assist-ingest-007.json",
     "CLAUDE.md"
   ],
-  "output": "A merged PR adding the human dual-reviewer screening workspace (title/abstract + full-text stages, conflict adjudication, append-only audit) to @elyos/sra-core and @elyos/sra-cli, with no AI involvement and a full test suite.",
+  "output": "A merged PR adding the human dual-reviewer screening workspace (title/abstract + full-text stages, conflict adjudication, append-only audit) to @hee-lee-oss/sra-core and @hee-lee-oss/sra-cli, with no AI involvement and a full test suite.",
   "requestor": "TO BE SECURED",
   "verifiedNeed": false,
   "outputLicense": "Apache-2.0"
